@@ -1,0 +1,29 @@
+/* 
+ * File         : Chapter2.c
+ * Description  : Takes input from user and calculates the area of a rectangle
+ * Programmer   : Brianne Leatherman
+ * Date         : September 16, 2021
+ */
+
+#include <stdio.h>
+
+int main() 
+{
+    //variables to be used in the program
+    float width, height, area;
+    
+    //prompt user for width and height
+    printf("Please enter the width: \n");
+    scanf("%f", &width);
+    printf("Please enter the height: \n");
+    scanf("%f", &height);
+    
+    //calculate area of rectangle
+    area = width * height;
+    
+    //display results
+    printf("The area of a rectangle with width: %.2f and height: %.2f is %.3f", width, height, area);
+    
+    return 0;
+}
+
