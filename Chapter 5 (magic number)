@@ -1,0 +1,60 @@
+/* 
+ * File         : Chapter5.c
+ * Description  : Asks user to guess a number between 1 and 10 within 5 tries
+ * Programmer   : Brianne Leatherman
+ * Date         : October 2, 2021
+ */
+
+#include <stdio.h>
+#define MAGIC_NUMBER 1
+#define TRIES 5
+
+int main() 
+{
+    int guess = 0;
+    int i = 1;
+    
+    //Initial prompt to user
+    printf("You have %d tries to guess the magic number (between 1 and 10)! Please enter a number: ", TRIES);
+    scanf("%d", &guess);
+    
+    //Loop to prompt user for magic number
+    for (i; i < TRIES; i++)
+    {                            
+        //Stops loop if correct number is entered
+        if (guess == MAGIC_NUMBER) break;
+
+        //Provides tips to users to find the number
+        else if (guess < MAGIC_NUMBER)
+        {
+            printf("Your guess is too low, you have %d guesses left. Please enter your next guess: ", TRIES - i);
+            scanf("%d", &guess);
+        }
+        else if (guess > MAGIC_NUMBER)
+        {
+            printf("Your guess is too high, you have %d guesses left. Please enter your next guess: ", TRIES - i);
+            scanf("%d", &guess);
+        }
+
+        //Wasn't actually able to trigger this while testing, but who knows
+        else
+        {
+            printf("\nI think you broke my program :(");
+            break;
+        }       
+    }
+     
+    //Display congrats
+    if (guess == MAGIC_NUMBER)
+    {
+        printf("\nCongratulations, you guessed the magic number in %d guesses!\nThanks for playing!", i);
+    }
+    
+    //Displays failure
+    else
+    {
+        printf("\nSorry, you didn't guess the magic number.\nIf you would like to try again, please rerun the program\n");
+    }
+    
+    return 0;
+}
