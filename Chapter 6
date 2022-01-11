@@ -1,0 +1,45 @@
+/* 
+ * File         : Chapter6.c
+ * Description  : Creates a multiplication table with size determined by user
+ * Programmer   : Brianne Leatherman
+ * Date         : October 14, 2021
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() 
+{
+    void printTable(int);
+    int userSize = 0;
+    
+    //take user input to determine size of table
+    printf("Please enter the size of the multiplication table: ");
+    scanf("%d", &userSize);
+    
+    //call function to print table
+    printTable(userSize);
+    
+    return (0);
+}
+
+/**
+* Input:   userSize   
+* Process: prints a multiplication table using for loops
+* Output:  none
+*/
+void printTable(int size)
+{
+    //first for loop creates rows
+    for (int i = 1; i <= size; i++)
+    {
+        //second for loop creates columns
+        for (int j = 1; j <= size; j++)
+        {
+            //calculate values
+            printf("%6d", i * j);    
+        }   
+        
+        printf("\n");
+    }
+}
