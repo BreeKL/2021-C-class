@@ -1,0 +1,93 @@
+/* 
+ * File         : Chapter9.c
+ * Description  : Checks whether a user-given string is a palindrome
+ * Programmer   : Brianne Leatherman
+ * Date         : November 25, 2021
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define STRING_SIZE 81
+
+int isPalindrome();
+
+int main() 
+{
+    char userString[STRING_SIZE];
+    
+    //takes input from user
+    printf("Please enter your palindrome: ");
+    gets(userString);
+    
+    //call function to determine if string is a palindrome
+    int result = isPalindrome(userString);
+    
+    //displays result
+    if (result == 1)
+    {
+        printf("%d - This is a palindrome!\n", result);
+    }
+    else if (result == 0)
+    {
+        printf("%d - Sorry, this is not a palindrome\n", result);
+    }
+    else printf("You did not enter a valid string.\n");
+
+    return 0;
+}
+
+/**
+* Input:   userString[]  
+* Process: Determines if the user-given string is a palindrome
+* Output:  pResult
+*/
+int isPalindrome(char string[])
+{
+    int pResult = -1;
+    int temp = 0;
+    int end = strlen(string) - 1; //index of last character
+        
+    if ((end % 2) == 0) //if the string has an odd number of characters
+    {
+        //iterate through the first half of the string, and compare a 
+        //character to its counterpart in the other half of the string
+        for (int i = 0; i < (end / 2); i++) 
+        {
+            //iterate through the first half of the string, and compare a 
+            //character to its counterpart in the other half of the string
+            if (tolower(string[i]) == tolower(string[end - i]))
+            {
+                temp++;
+            }
+            //check if all characters in the first half have matched the characters in the second half
+            if (temp == end / 2) 
+            {
+                pResult = 1;
+            }
+            else pResult = 0;
+        }
+    }
+    else //if the string has an even number of characters
+    {
+        //An even amount of characters results in an odd numbered index,
+        //resulting in a fraction when divided by zero. By adding 1 to end,
+        //it allows the correct number of iterations
+        for (int i = 0; i < ((end + 1) / 2); i++)  
+        {                     
+            //iterate through the first half of the string, and compare a 
+            //character to its counterpart in the other half of the string
+            if (tolower(string[i]) == tolower(string[end - i]))
+            {
+                temp++;
+            }
+            //check if all characters in the first half have matched the characters in the second half
+            if (temp == (end + 1) / 2)
+            {
+                pResult = 1; 
+            }
+            else pResult = 0;
+        }
+    }
+    return pResult;
+}
