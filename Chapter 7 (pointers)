@@ -1,0 +1,54 @@
+/* 
+ * File         : Chapter7.c
+ * Description  : Calculates the quotient and remainder of two numbers given by the user
+ * Programmer   : Brianne Leatherman
+ * Date         : October 14, 2021
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() 
+{
+    void calcFunc(int, int, float *, int *);
+    int userFirst = 0, userSecond = 0, remainder = 0;
+    float quotient = 0.0;
+
+    //takes user input
+    printf("Please enter an integer: ");
+    scanf("%d", &userFirst);
+    printf("Please enter a second integer: ");
+    scanf("%d", &userSecond);
+    
+    //make sure user doesn't try to divide by 0
+    if (userSecond != 0)
+    {
+        //call function to perform calculations
+        calcFunc(userFirst, userSecond, &quotient, &remainder);
+        
+        //display results
+        printf("Quotient = %.3f \n", quotient);
+        printf("Remainder = %d", remainder);
+    }
+    else
+    {
+        printf("Sorry, you cannot divide by zero");
+    }
+    
+    return (0);
+}
+
+/**
+* Input:   userFirst, userSecond, &quotient, &remainder  
+* Process: calculates the quotient and remainder and uses the respective addresses
+*          to store the values
+* Output:  none
+*/
+void calcFunc(int firstInt, int secondInt, float *locationQuotient, int *locationRemainder)
+{
+    //divide first input by second input and store in address for quotient
+    *locationQuotient = (float)firstInt / secondInt;
+    
+    //find remainder and store in address for remainder
+    *locationRemainder = firstInt % secondInt;
+}
