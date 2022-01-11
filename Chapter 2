@@ -1,0 +1,24 @@
+/* 
+ * File         : Chapter2.c
+ * Description  : Converts 1.80 meters to its equivalent in feet
+ * Programmer   : Brianne Leatherman
+ * Date         : September 10, 2021
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() 
+{
+    //Initial value given for meters
+    float meters = 1.80;
+    
+    //formula to convert meters to feet
+    float feet = 3.28084 * meters;
+    
+    //display result
+    printf("%.2f meters is %.2f feet!", meters, feet);
+    
+    return (EXIT_SUCCESS);
+}
+
