@@ -1,0 +1,93 @@
+/* 
+ * File         : Chapter8.c
+ * Description  : Changes a date given by the user to an ordinal date
+ * Programmer   : Brianne Leatherman
+ * Date         : October 31, 2021
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int changeDate(int, int, int);
+
+int main() 
+{
+    int userMonth, userDay, userYear;
+    
+    //take user input
+    printf("Please enter a date (MM/DD/YYYY): \n");
+    scanf("%d / %d / %d", &userMonth, &userDay, &userYear);
+    
+    //simple input validation, and call changeDate function
+    if (1 <= userMonth <=12 && 1 <= userDay <= 31)
+    {
+        printf("The date in YYYY-DDD format is %d-%03d \n",userYear, changeDate(userMonth, userDay, userYear));
+    }
+    else
+    {
+        printf("PLease enter a valid date.");
+    }
+    return 0;
+}
+
+/**
+* Input:   userMonth, userDay, userYear  
+* Process: Takes a date and changes it to an ordinal date
+* Output:  ddd
+*/
+int changeDate(int uMonth, int uDay, int uYear)
+{
+    int ddd = 0;    
+    
+    //initialize array with days in each respective month
+    int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    //adds total days from months prior to date, then adds days in current month
+    switch (uMonth)
+    {
+        case 12:
+            ddd += daysInMonth[10];
+        case 11:
+            ddd += daysInMonth[9];
+        case 10:
+            ddd += daysInMonth[8];
+        case 9:
+            ddd += daysInMonth[7];
+        case 8:
+            ddd += daysInMonth[6];
+        case 7:
+            ddd += daysInMonth[5];
+        case 6:
+            ddd += daysInMonth[4];
+        case 5:
+            ddd += daysInMonth[3];
+        case 4:
+            ddd += daysInMonth[2];
+        case 3:
+            ddd += daysInMonth[1];
+        case 2:
+            ddd += daysInMonth[0];
+        case 1:
+            ddd += uDay;
+            break;
+        default:
+            printf("Please enter a valid date.");
+            break;
+    }
+    
+    //Check to see if year is a leap year, and add a day if the date is after Feb 29
+    if (uYear % 400 == 0 && uMonth > 2)
+    {
+        ddd ++;
+        printf("This is a leap year.\n");
+    }
+    else if (uYear % 100 == 0){}
+    else if (uYear % 4 == 0 && uMonth > 2)
+    {
+        ddd ++;
+        printf("This is a leap year.\n");
+    }
+    else {}
+        
+    return ddd;
+}
