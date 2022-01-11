@@ -1,0 +1,52 @@
+/* 
+ * File         : Chapter10.c
+ * Description  : Display contents of a file in uppercase
+ * Programmer   : Brianne Leatherman
+ * Date         : December 4, 2021
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    FILE *inFile, *outFile; 
+    char temp, buff[255];
+    char readFile[30] = "hi.txt";
+    char writeFile[30];
+    int i = 0;
+    
+    //open initial file, and notifies and quits if file doesn't exist
+    inFile = fopen(readFile, "r");
+    if (inFile == NULL)
+    {
+        printf("Sorry, the file to read does not exist");
+        exit(1);
+    }
+    
+    printf("The contents of %s are:\n", readFile);
+    
+    //reads characters from file, and stores uppercase version in a buffer
+    while ((temp = fgetc(inFile)) != EOF)
+    {
+        printf("%c", temp);
+        buff[i] = toupper(temp);
+        i++;
+    }
+    fclose(inFile);
+
+    //take a file name from the user
+    printf("\nPlease enter the file location to save the\n"
+            "uppercase version of this file: ");
+    scanf("%s", &writeFile);
+    
+    //open the user's file, and write the uppercase version to the file from the buffer
+    outFile = fopen(writeFile, "w"); 
+    fputs(buff, outFile);
+    
+    printf("You have successfully saved the uppercase version to the file: %s", writeFile);
+    
+    fclose(outFile);
+    
+    return 0;
+}
