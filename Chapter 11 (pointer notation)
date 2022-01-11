@@ -1,0 +1,53 @@
+/* 
+ * File         : Chapter11.c
+ * Description  : Make a multiplication table using pointer notation
+ * Programmer   : Brianne Leatherman
+ * Date         : December 11, 2021
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void printTable(int, int *);
+
+int main() 
+{
+    int n = 0;
+    //Take input from the user 
+    printf("Please enter the size of the multiplication table: ");
+    scanf("%d", &n);
+    
+    //declare array and pointer to array
+    int myArray[n][n];
+    int *myPointer = myArray;
+    
+    //call function to display multiplication table
+    printTable(n, myPointer);
+
+    return 0;
+}
+
+/**
+* Input:   n, myPointer  
+* Process: prints a multiplication table using for loops and pointers
+* Output:  none
+*/
+void printTable(int n, int *myPointer)
+{   int *locationInArray;
+    
+    //loop through rows
+    for (int i = 0; i < n; i++)
+    {
+        //loop through columns
+        for (int j = 0; j < n; j++)
+        {
+            //address of myArray[i][j]
+            locationInArray = (myPointer + (i * n + j));
+            //assign the product of (i + 1) * (j + 1) to myArray[i][j]
+            *locationInArray = ((i + 1) * (j + 1));
+            //print multiplication table
+            printf("%d\t", *locationInArray);
+        }
+        printf("\n");
+    }
+}
